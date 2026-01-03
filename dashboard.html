@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI in Civil Engineering - Research Corpus Dashboard</title>
+<style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 24px;
+            margin-bottom: 32px;
+            border-radius: 12px;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        
+        .kpi-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .kpi-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        
+        .section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table th {
+            background: var(--bg);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .data-table tr:hover {
+            background: var(--bg);
+        }
+        
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+        
+        .quality-item {
+            text-align: center;
+            padding: 16px;
+            background: var(--bg);
+            border-radius: 8px;
+        }
+        
+        .quality-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .quality-value.good {
+            color: var(--success);
+        }
+        
+        .quality-value.warn {
+            color: var(--warning);
+        }
+        
+        .quality-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Taxonomy Styles */
+        .taxonomy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .taxonomy-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .taxonomy-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .taxonomy-item:last-child {
+            border-bottom: none;
+        }
+        
+        .taxonomy-item strong {
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        
+        .taxonomy-item span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+            
+            header {
+                padding: 24px 16px;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Insights Lab Styles */
+        .insights-lab-header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 40px 24px;
+            margin: 48px 0 32px 0;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .insights-lab-header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .insights-lab-header p {
+            opacity: 0.9;
+        }
+        
+        .insights-subsection {
+            margin-bottom: 40px;
+        }
+        
+        .insights-subsection > h2 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #6366f1;
+        }
+        
+        .insight-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+        
+        .insight-card h3 {
+            font-size: 1.1rem;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+        
+        .insight-card .question {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+        
+        .insight-card .takeaway {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-top: 12px;
+            padding: 12px;
+            background: #f0f9ff;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .insight-card img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .no-chart {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 40px;
+            background: var(--bg);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>📊 AI in Civil Engineering Research Corpus</h1>
+<p>Dashboard summarizing 505 academic papers on AI applications in civil engineering</p>
+</header>
+<!-- KPIs Section -->
+<div class="kpi-grid">
+<div class="kpi-card">
+<div class="kpi-value">505</div>
+<div class="kpi-label">Total Papers</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-value">2015 - 2025</div>
+<div class="kpi-label">Year Range</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-value">4.1M</div>
+<div class="kpi-label">Total Tokens</div>
+</div>
+</div>
+<!-- Taxonomy Section -->
+<div class="section">
+<h2>📚 Taxonomy: Methods &amp; Domains</h2>
+<p style="color: var(--text-secondary); margin-bottom: 20px;">
+                This corpus classifies papers by AI methods and civil engineering domains. Below are brief descriptions of each category.
+            </p>
+<div class="taxonomy-grid">
+<div class="taxonomy-column">
+<h3>🤖 AI Methods</h3>
+<div class="taxonomy-item">
+<strong>Machine Learning</strong>
+<span>Classical ML algorithms: regression, classification, clustering, decision trees, random forests, SVM</span>
+</div>
+<div class="taxonomy-item">
+<strong>Deep Learning</strong>
+<span>Neural networks: CNNs, RNNs, LSTMs, transformers, autoencoders for pattern recognition</span>
+</div>
+<div class="taxonomy-item">
+<strong>Computer Vision</strong>
+<span>Image/video analysis: object detection, segmentation, crack detection, drone imagery</span>
+</div>
+<div class="taxonomy-item">
+<strong>NLP</strong>
+<span>Natural Language Processing: text mining, document analysis, information extraction</span>
+</div>
+<div class="taxonomy-item">
+<strong>Optimization</strong>
+<span>Metaheuristics: genetic algorithms, particle swarm, simulated annealing for design optimization</span>
+</div>
+<div class="taxonomy-item">
+<strong>General AI</strong>
+<span>Broad AI applications: expert systems, knowledge graphs, multi-agent systems</span>
+</div>
+<div class="taxonomy-item">
+<strong>Robotics</strong>
+<span>Autonomous systems: construction robots, drones, automated inspection</span>
+</div>
+<div class="taxonomy-item">
+<strong>IoT/Digital Twin</strong>
+<span>Sensor networks, real-time monitoring, virtual infrastructure models</span>
+</div>
+</div>
+<div class="taxonomy-column">
+<h3>🏗️ Civil Engineering Domains</h3>
+<div class="taxonomy-item">
+<strong>Structural</strong>
+<span>Structural health monitoring, damage detection, load analysis, bridge/building integrity</span>
+</div>
+<div class="taxonomy-item">
+<strong>Construction</strong>
+<span>Project management, site monitoring, safety, scheduling, resource allocation, BIM</span>
+</div>
+<div class="taxonomy-item">
+<strong>Transportation</strong>
+<span>Traffic flow, pavement condition, road networks, autonomous vehicles, rail systems</span>
+</div>
+<div class="taxonomy-item">
+<strong>Geotechnical</strong>
+<span>Soil analysis, foundation design, slope stability, tunneling, earthquake response</span>
+</div>
+<div class="taxonomy-item">
+<strong>Water/Environmental</strong>
+<span>Water resources, flood prediction, wastewater, environmental impact, hydrology</span>
+</div>
+<div class="taxonomy-item">
+<strong>Materials</strong>
+<span>Concrete, steel, composites, material properties, durability, testing</span>
+</div>
+<div class="taxonomy-item">
+<strong>Infrastructure</strong>
+<span>Asset management, urban planning, smart cities, utility networks, lifecycle analysis</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Text Statistics -->
+<div class="section">
+<h2>📊 Corpus Text Statistics</h2>
+<p style="color: var(--text-secondary); margin-bottom: 16px;">
+                Character count distribution across full text and summaries in the corpus.
+            </p>
+<img alt="Text Statistics" src="charts/text_statistics.png"/>
+</div>
+<!-- Papers per Year -->
+<div class="section">
+<h2>📈 Papers per Year</h2>
+<img alt="Papers per Year" src="charts/papers_per_year.png"/>
+</div>
+<!-- Domains Over Time -->
+<div class="section">
+<h2>🏗️ Top 10 Civil Engineering Domains Over Time</h2>
+<img alt="Domains Over Time" src="charts/domains_over_time.png"/>
+</div>
+<!-- Methods Over Time -->
+<div class="section">
+<h2>🤖 Top 10 AI Methods Over Time</h2>
+<img alt="Methods Over Time" src="charts/methods_over_time.png"/>
+</div>
+<!-- Keywords -->
+<div class="section">
+<h2>🏷️ Top 30 Keywords</h2>
+<img alt="Top Keywords" src="charts/top_keywords.png"/>
+</div>
+<!-- Token Usage -->
+<div class="section">
+<h2>📊 Token Usage Over Time</h2>
+<p style="margin-bottom: 16px; color: var(--text-secondary);">
+                Total tokens processed from paper text, with average tokens per paper shown by year.
+            </p>
+<img alt="Token Usage" src="charts/token_usage.png"/>
+</div>
+<!-- Emerging Pairs -->
+<div class="section">
+<h2>🚀 Emerging Method–Domain Pairs</h2>
+<p style="margin-bottom: 16px; color: var(--text-secondary);">
+                Comparing early period (before 2023) vs late period (2023+). 
+                Higher ratio indicates stronger emergence trend.
+            </p>
+<table class="data-table">
+<thead>
+<tr>
+<th>#</th>
+<th>AI Method</th>
+<th>CE Domain</th>
+<th>Early Count</th>
+<th>Late Count</th>
+<th>Growth Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Robotics</td>
+<td>Construction Management</td>
+<td>0</td>
+<td>35</td>
+<td>35.00x</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Generative AI</td>
+<td>Construction Management</td>
+<td>0</td>
+<td>26</td>
+<td>26.00x</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Machine Learning</td>
+<td>Geotechnical Engineering</td>
+<td>0</td>
+<td>20</td>
+<td>20.00x</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Automation</td>
+<td>Construction Management</td>
+<td>0</td>
+<td>19</td>
+<td>19.00x</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Machine Learning</td>
+<td>Structural Engineering</td>
+<td>2</td>
+<td>36</td>
+<td>12.00x</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Robotics</td>
+<td>Structural Engineering</td>
+<td>0</td>
+<td>12</td>
+<td>12.00x</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Deep Learning</td>
+<td>Structural Engineering</td>
+<td>1</td>
+<td>20</td>
+<td>10.00x</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Machine Learning</td>
+<td>Environmental Engineering</td>
+<td>0</td>
+<td>10</td>
+<td>10.00x</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Robotics</td>
+<td>Geotechnical Engineering</td>
+<td>0</td>
+<td>9</td>
+<td>9.00x</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Optimization Algorithms</td>
+<td>Construction Management</td>
+<td>0</td>
+<td>8</td>
+<td>8.00x</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Machine Learning</td>
+<td>Urban Planning</td>
+<td>0</td>
+<td>8</td>
+<td>8.00x</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Computer Vision</td>
+<td>Structural Engineering</td>
+<td>1</td>
+<td>15</td>
+<td>7.50x</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Optimization</td>
+<td>Structural</td>
+<td>0</td>
+<td>7</td>
+<td>7.00x</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Machine Learning</td>
+<td>Transportation Engineering</td>
+<td>0</td>
+<td>7</td>
+<td>7.00x</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Deep Learning</td>
+<td>Geotechnical Engineering</td>
+<td>0</td>
+<td>7</td>
+<td>7.00x</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Machine Learning</td>
+<td>Surveying &amp; Geomatics</td>
+<td>0</td>
+<td>7</td>
+<td>7.00x</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Computer Vision</td>
+<td>Geotechnical Engineering</td>
+<td>1</td>
+<td>14</td>
+<td>7.00x</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Neural Networks</td>
+<td>Structural Engineering</td>
+<td>1</td>
+<td>13</td>
+<td>6.50x</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Computer Vision</td>
+<td>Infrastructure</td>
+<td>2</td>
+<td>18</td>
+<td>6.00x</td>
+</tr>
+<tr>
+<td>20</td>
+<td>BIM Integration</td>
+<td>Construction Management</td>
+<td>0</td>
+<td>6</td>
+<td>6.00x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Data Quality -->
+<div class="section">
+<h2>📋 Data Quality Summary</h2>
+<div class="quality-grid">
+<div class="quality-item">
+<div class="quality-value warn">500/505</div>
+<div class="quality-label">Year Present</div>
+</div>
+<div class="quality-item">
+<div class="quality-value good">502/505</div>
+<div class="quality-label">Methods Detected</div>
+</div>
+<div class="quality-item">
+<div class="quality-value good">505/505</div>
+<div class="quality-label">Domains Detected</div>
+</div>
+<div class="quality-item">
+<div class="quality-value good">504/505</div>
+<div class="quality-label">Keywords Present</div>
+</div>
+</div>
+</div>
+<!-- ============================================================ -->
+<!-- INSIGHTS LAB SECTION -->
+<!-- ============================================================ -->
+<div class="insights-lab-header">
+<h1>🔬 Insights Lab</h1>
+<p>22 advanced visualizations for deep corpus analysis</p>
+</div>
+<!-- ==== SUBSECTION 1: Coverage & Bias ==== -->
+<div class="insights-subsection">
+<h2>📊 1. Coverage &amp; Bias</h2>
+<div class="insight-card">
+<h3>(1) Year Coverage Strip</h3>
+<p class="question"><strong>Question:</strong> Where is the corpus actually concentrated?</p>
+<img alt="Year Coverage Strip" src="charts/year_coverage_strip.png"/>
+<p class="takeaway">📌 Takeaway: Most papers concentrate in 2023-2025, showing rapid recent growth.</p>
+</div>
+<div class="insight-card">
+<h3>(2) Source Bias Waterfall</h3>
+<p class="question"><strong>Question:</strong> Which sources dominate the corpus?</p>
+<img alt="Source Bias Waterfall" src="charts/source_bias_waterfall.png"/>
+<p class="takeaway">📌 Takeaway: Top 3 sources account for majority of corpus.</p>
+</div>
+</div>
+<!-- ==== SUBSECTION 2: Domain & Method Dynamics ==== -->
+<div class="insights-subsection">
+<h2>🔄 2. Domain &amp; Method Dynamics</h2>
+<div class="insight-card">
+<h3>(3) Domain Diversity Index Over Time</h3>
+<p class="question"><strong>Question:</strong> Is the literature diversifying or specializing?</p>
+<img alt="Domain Diversity Index" src="charts/domain_diversity_index.png"/>
+<p class="takeaway">📌 Shannon entropy measures topic spread; higher = more diverse.</p>
+</div>
+<div class="insight-card">
+<h3>(4) Method Diversity Index Over Time</h3>
+<p class="question"><strong>Question:</strong> Are AI techniques converging or fragmenting?</p>
+<img alt="Method Diversity Index" src="charts/method_diversity_index.png"/>
+<p class="takeaway">📌 Method diversity shows technique adoption patterns over time.</p>
+</div>
+<div class="insight-card">
+<h3>(5) Domain Momentum Leaderboard</h3>
+<p class="question"><strong>Question:</strong> Which domains are accelerating right now?</p>
+<img alt="Domain Momentum" src="charts/domain_momentum.png"/>
+<p class="takeaway">📌 Ratio shows late-period growth vs early-period baseline.</p>
+</div>
+<div class="insight-card">
+<h3>(6) Method Momentum Leaderboard</h3>
+<p class="question"><strong>Question:</strong> Which AI methods are accelerating?</p>
+<img alt="Method Momentum" src="charts/method_momentum.png"/>
+<p class="takeaway">📌 Methods with &gt;2x ratio are experiencing strong growth.</p>
+</div>
+<div class="insight-card">
+<h3>(7) Domain ↔ Method Power Grid</h3>
+<p class="question"><strong>Question:</strong> What method-domain combinations are strongest?</p>
+<img alt="Power Grid Heatmap" src="charts/power_grid_heatmap.png"/>
+<p class="takeaway">📌 Darker cells indicate stronger research concentration.</p>
+</div>
+<div class="insight-card">
+<h3>(9) First Appearance Map</h3>
+<p class="question"><strong>Question:</strong> When did each major method first show up in each domain?</p>
+<img alt="First Appearance Matrix" src="charts/first_appearance_matrix.png"/>
+<p class="takeaway">📌 Green = early adopters, Red = recent entrants.</p>
+</div>
+</div>
+<!-- ==== SUBSECTION 4: Text/Keyword Intelligence ==== -->
+<div class="insights-subsection">
+<h2>📝 4. Text/Keyword Intelligence</h2>
+<div class="insight-card">
+<h3>(13) Keyword Rising Stars</h3>
+<p class="question"><strong>Question:</strong> Which keywords are newly hot?</p>
+<img alt="Keyword Rising Stars" src="charts/keyword_rising_stars.png"/>
+<p class="takeaway">📌 Positive change = keyword gaining traction.</p>
+</div>
+<div class="insight-card">
+<h3>(14) Keyword Falling Stars</h3>
+<p class="question"><strong>Question:</strong> Which keywords are declining?</p>
+<img alt="Keyword Falling Stars" src="charts/keyword_falling_stars.png"/>
+<p class="takeaway">📌 Negative change = keyword losing relevance.</p>
+</div>
+<div class="insight-card">
+<h3>(15) Keyword-Domain Association Map</h3>
+<p class="question"><strong>Question:</strong> Which keywords belong to which domains?</p>
+<img alt="Keyword Domain Heatmap" src="charts/keyword_domain_heatmap.png"/>
+<p class="takeaway">📌 Shows domain-specific vocabulary patterns.</p>
+</div>
+<div class="insight-card">
+<h3>(16) Title Phrase Trends</h3>
+<p class="question"><strong>Question:</strong> What 2-word phrases in titles are trending?</p>
+<img alt="Title Phrase Trends" src="charts/title_phrase_trends.png"/>
+<p class="takeaway">📌 Bigrams reveal research focus evolution.</p>
+</div>
+<div class="insight-card">
+<h3>(17) Summary Signal Score</h3>
+<p class="question"><strong>Question:</strong> Are summaries becoming more detailed?</p>
+<img alt="Summary Score" src="charts/summary_score.png"/>
+<p class="takeaway">📌 Average summary length over time.</p>
+</div>
+<div class="insight-card">
+<h3>(18) Full Text Depth by Source</h3>
+<p class="question"><strong>Question:</strong> Which sources provide real full text?</p>
+<img alt="Text Depth Boxplot" src="charts/text_depth_boxplot.png"/>
+<p class="takeaway">📌 Box shows text length distribution by source.</p>
+</div>
+</div>
+<!-- ==== SUBSECTION 5: Data Quality & Reliability ==== -->
+<div class="insights-subsection">
+<h2>✅ 5. Data Quality &amp; Reliability</h2>
+<div class="insight-card">
+<h3>(19) Outlier Papers Discovery</h3>
+<p class="question"><strong>Question:</strong> Which papers are unusually long/short or heavily tagged?</p>
+<table class="data-table">
+<thead>
+<tr>
+<th>Title</th><th>Year</th><th>Source</th>
+<th>Text Len</th><th>Tags</th><th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deep learning for structural health monitoring...</td>
+<td>Unknown</td>
+<td>CORE</td>
+<td>404,194</td>
+<td>15</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>HISTORICAL AND FORECASTED KENTUCKY SPECIFIC SLOPE ...</td>
+<td>2023</td>
+<td>CORE</td>
+<td>244,855</td>
+<td>14</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Image-Based Hybrid Structural Health Monitoring Th...</td>
+<td>2022</td>
+<td>CORE</td>
+<td>225,619</td>
+<td>15</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Autonomous unmanned aerial vehicles and deep learn...</td>
+<td>2021</td>
+<td>CORE</td>
+<td>215,979</td>
+<td>15</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Structural Health Monitoring of Additively Manufac...</td>
+<td>2023</td>
+<td>CORE</td>
+<td>209,804</td>
+<td>14</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Study on bridge inspections, A: identifying barrie...</td>
+<td>2021</td>
+<td>CORE</td>
+<td>204,873</td>
+<td>14</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Automating Bridge Inspection Procedures: Real-Time...</td>
+<td>2019</td>
+<td>CORE</td>
+<td>201,893</td>
+<td>14</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Geophysical and Geo-AI based evaluation and modell...</td>
+<td>2024</td>
+<td>CORE</td>
+<td>198,399</td>
+<td>14</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Landslide identification using deep learning-based...</td>
+<td>2024</td>
+<td>CORE</td>
+<td>198,039</td>
+<td>13</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>A Review of Similitude Methods for Structural Engi...</td>
+<td>2019</td>
+<td>CORE</td>
+<td>186,834</td>
+<td>13</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>VISUALIZING AND AUTOMATING PAST, REAL-TIME, AND FO...</td>
+<td>2024</td>
+<td>CORE</td>
+<td>164,412</td>
+<td>15</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Development of a Computer Vision-Based Three-Dimen...</td>
+<td>2019</td>
+<td>CORE</td>
+<td>153,180</td>
+<td>15</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>An Overview on Application of Machine Learning Tec...</td>
+<td>2018</td>
+<td>CORE</td>
+<td>134,343</td>
+<td>13</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Bayesian Analysis of the Impact of Rainfall Data P...</td>
+<td>2019</td>
+<td>CORE</td>
+<td>133,406</td>
+<td>13</td>
+<td>Very long text</td>
+</tr>
+<tr>
+<td>Non-Destructive Testing and Machine Learning in In...</td>
+<td>2024</td>
+<td>CORE</td>
+<td>132,992</td>
+<td>16</td>
+<td>Very long text, Heavily tagged</td>
+</tr>
+</tbody>
+</table>
+<p class="takeaway">📌 Outliers may need manual review.</p>
+</div>
+<div class="insight-card">
+<h3>Cost vs Value Analysis</h3>
+<p class="question"><strong>Question:</strong> What is the relationship between token count and relevance score?</p>
+<img alt="Cost Value Scatter Plot" src="charts/cost_value_scatter_plot.png"/>
+<p class="takeaway">📌 Papers with high relevance and lower token count offer best cost-value ratio.</p>
+</div>
+<div class="insight-card">
+<h3>Relevance Score Distribution</h3>
+<p class="question"><strong>Question:</strong> How are relevance scores distributed across the corpus?</p>
+<img alt="Relevance Score Histogram" src="charts/relevance_score_histogram.png"/>
+<p class="takeaway">📌 Papers above 60 cutoff are considered relevant to the research domain.</p>
+</div>
+</div>
+<footer>
+<p>Generated from corpus.db | Static Dashboard with Insights Lab</p>
+</footer>
+</div>
+</body>
+</html>
