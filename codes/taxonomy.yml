@@ -1,0 +1,592 @@
+version: 1
+language: en
+
+settings:
+  match_mode: casefold_contains
+  min_hits_to_tag: 1
+  allow_multi_label: true
+  dedupe_keywords: true
+
+civil_engineering_areas:
+  Structural_Engineering:
+    examples:
+      - Bridge design and analysis
+      - Building structural health monitoring
+      - Earthquake-resistant structures
+      - Steel and concrete frame analysis
+    keywords:
+      - "structural engineering"
+      - "structural health monitoring"
+      - "shm"
+      - "bridge structure"
+      - "seismic response"
+      - "earthquake engineering"
+      - "structural damage"
+      - "crack detection"
+      - "structural safety"
+      - "load bearing"
+      - "steel structure"
+      - "concrete structure"
+      - "reinforced concrete"
+      - "prestressed concrete"
+      - "structural vibration"
+      - "modal analysis"
+      - "finite element"
+      - "fea"
+      - "fem"
+      - "structural reliability"
+      - "fatigue analysis"
+      - "buckling"
+      - "structural integrity"
+      - "dynamic response"
+      - "building frame"
+      - "truss"
+      - "beam-column"
+      - "shear wall"
+      - "structural optimization"
+      - "structural identification"
+      - "damage detection"
+
+  Geotechnical_Engineering:
+    examples:
+      - Soil classification and properties
+      - Foundation design
+      - Slope stability analysis
+      - Tunneling and underground structures
+    keywords:
+      - "geotechnical engineering"
+      - "soil mechanics"
+      - "foundation engineering"
+      - "slope stability"
+      - "landslide"
+      - "liquefaction"
+      - "bearing capacity"
+      - "pile foundation"
+      - "shallow foundation"
+      - "deep foundation"
+      - "ground improvement"
+      - "soil classification"
+      - "cone penetration"
+      - "cpt"
+      - "spt"
+      - "standard penetration"
+      - "shear strength"
+      - "consolidation"
+      - "retaining wall"
+      - "earth pressure"
+      - "tunneling"
+      - "tunnel boring"
+      - "tbm"
+      - "excavation"
+      - "soil-structure interaction"
+      - "geotechnical investigation"
+      - "embankment"
+      - "ground settlement"
+      - "rock mechanics"
+      - "geosynthetics"
+      - "soil behavior"
+      - "triaxial test"
+
+  Transportation_Engineering:
+    examples:
+      - Traffic flow prediction
+      - Autonomous vehicle systems
+      - Pavement condition assessment
+      - Transportation network optimization
+    keywords:
+      - "transportation engineering"
+      - "traffic flow"
+      - "traffic prediction"
+      - "traffic congestion"
+      - "autonomous vehicle"
+      - "self-driving"
+      - "connected vehicle"
+      - "intelligent transportation"
+      - "its"
+      - "road safety"
+      - "crash prediction"
+      - "accident prediction"
+      - "pavement management"
+      - "road condition"
+      - "highway"
+      - "intersection"
+      - "signalized intersection"
+      - "traffic signal"
+      - "vehicle detection"
+      - "license plate"
+      - "speed estimation"
+      - "travel time"
+      - "origin-destination"
+      - "route planning"
+      - "ride sharing"
+      - "public transit"
+      - "railway"
+      - "rail track"
+      - "bridge inspection"
+      - "road maintenance"
+      - "lane detection"
+      - "traffic surveillance"
+
+  Water_Resources_Hydraulics:
+    examples:
+      - Flood prediction and management
+      - River flow modeling
+      - Hydraulic structure design
+      - Groundwater modeling
+    keywords:
+      - "water resources"
+      - "hydraulic engineering"
+      - "flood prediction"
+      - "flood forecasting"
+      - "rainfall-runoff"
+      - "streamflow"
+      - "river flow"
+      - "hydrological modeling"
+      - "watershed"
+      - "groundwater"
+      - "aquifer"
+      - "dam"
+      - "reservoir"
+      - "spillway"
+      - "open channel"
+      - "pipe flow"
+      - "water distribution"
+      - "urban drainage"
+      - "stormwater"
+      - "sediment transport"
+      - "erosion"
+      - "coastal engineering"
+      - "wave modeling"
+      - "tide"
+      - "water supply"
+      - "irrigation"
+      - "hydropower"
+      - "hydraulic structure"
+      - "culvert"
+      - "levee"
+      - "floodplain"
+      - "drought prediction"
+
+  Environmental_Engineering:
+    examples:
+      - Air quality monitoring and prediction
+      - Wastewater treatment optimization
+      - Solid waste management
+      - Environmental impact assessment
+    keywords:
+      - "environmental engineering"
+      - "air quality"
+      - "air pollution"
+      - "water quality"
+      - "water pollution"
+      - "wastewater treatment"
+      - "sewage treatment"
+      - "solid waste"
+      - "waste management"
+      - "landfill"
+      - "recycling"
+      - "environmental monitoring"
+      - "pollution control"
+      - "emission"
+      - "carbon footprint"
+      - "sustainability"
+      - "green building"
+      - "leed"
+      - "environmental impact"
+      - "eia"
+      - "remediation"
+      - "contamination"
+      - "noise pollution"
+      - "climate change"
+      - "greenhouse gas"
+      - "renewable energy"
+      - "life cycle assessment"
+      - "lca"
+      - "circular economy"
+      - "net zero"
+      - "decarbonization"
+
+  Construction_Engineering_Management:
+    examples:
+      - Project scheduling and planning
+      - Cost estimation and control
+      - Safety management on construction sites
+      - Building Information Modeling applications
+    keywords:
+      - "construction management"
+      - "construction engineering"
+      - "project management"
+      - "construction scheduling"
+      - "cost estimation"
+      - "cost overrun"
+      - "construction delay"
+      - "construction safety"
+      - "safety management"
+      - "risk management"
+      - "bim"
+      - "building information modeling"
+      - "4d bim"
+      - "5d bim"
+      - "construction site"
+      - "site monitoring"
+      - "progress monitoring"
+      - "productivity"
+      - "resource allocation"
+      - "supply chain"
+      - "prefabrication"
+      - "modular construction"
+      - "lean construction"
+      - "construction automation"
+      - "construction robotics"
+      - "contractor"
+      - "subcontractor"
+      - "procurement"
+      - "earned value"
+      - "work breakdown"
+      - "critical path"
+      - "cpm"
+      - "pert"
+
+  Materials_Pavements:
+    examples:
+      - Concrete mix design optimization
+      - Pavement performance prediction
+      - Asphalt mixture characterization
+      - Material property estimation
+    keywords:
+      - "construction materials"
+      - "civil engineering materials"
+      - "concrete mix"
+      - "cement"
+      - "aggregate"
+      - "compressive strength"
+      - "tensile strength"
+      - "flexural strength"
+      - "asphalt"
+      - "bitumen"
+      - "hot mix asphalt"
+      - "hma"
+      - "pavement design"
+      - "pavement performance"
+      - "pavement distress"
+      - "rutting"
+      - "cracking"
+      - "pothole"
+      - "iri"
+      - "international roughness index"
+      - "pci"
+      - "pavement condition index"
+      - "falling weight deflectometer"
+      - "fwd"
+      - "ground penetrating radar"
+      - "gpr"
+      - "material characterization"
+      - "durability"
+      - "corrosion"
+      - "fiber reinforced"
+      - "geopolymer"
+      - "self-healing concrete"
+      - "recycled materials"
+
+ai_technologies:
+  Classical_Machine_Learning:
+    examples:
+      - Support Vector Machines for classification
+      - Random Forest for regression
+      - Gradient boosting for prediction
+      - K-means clustering
+    keywords:
+      - "machine learning"
+      - "support vector machine"
+      - "svm"
+      - "random forest"
+      - "decision tree"
+      - "gradient boosting"
+      - "xgboost"
+      - "lightgbm"
+      - "catboost"
+      - "ensemble learning"
+      - "bagging"
+      - "boosting"
+      - "k-nearest neighbor"
+      - "knn"
+      - "naive bayes"
+      - "logistic regression"
+      - "linear regression"
+      - "ridge regression"
+      - "lasso regression"
+      - "elastic net"
+      - "principal component"
+      - "pca"
+      - "feature selection"
+      - "feature engineering"
+      - "clustering"
+      - "k-means"
+      - "hierarchical clustering"
+      - "dbscan"
+      - "classification"
+      - "regression"
+      - "supervised learning"
+      - "unsupervised learning"
+      - "cross-validation"
+      - "hyperparameter tuning"
+
+  Deep_Learning_Neural_Networks:
+    examples:
+      - CNN for image classification
+      - LSTM for time series prediction
+      - Transformer models for sequential data
+      - Autoencoders for anomaly detection
+    keywords:
+      - "deep learning"
+      - "neural network"
+      - "convolutional neural network"
+      - "cnn"
+      - "recurrent neural network"
+      - "rnn"
+      - "long short-term memory"
+      - "lstm"
+      - "gated recurrent unit"
+      - "gru"
+      - "transformer"
+      - "attention mechanism"
+      - "self-attention"
+      - "bert"
+      - "gpt"
+      - "autoencoder"
+      - "variational autoencoder"
+      - "vae"
+      - "generative adversarial network"
+      - "gan"
+      - "multilayer perceptron"
+      - "mlp"
+      - "feedforward neural network"
+      - "backpropagation"
+      - "deep neural network"
+      - "dnn"
+      - "resnet"
+      - "vgg"
+      - "u-net"
+      - "encoder-decoder"
+      - "batch normalization"
+      - "dropout"
+      - "transfer learning"
+      - "fine-tuning"
+      - "pre-trained model"
+
+  Computer_Vision:
+    examples:
+      - Crack detection in structures
+      - Object detection on construction sites
+      - Semantic segmentation for infrastructure
+      - 3D reconstruction from images
+    keywords:
+      - "computer vision"
+      - "image processing"
+      - "image classification"
+      - "object detection"
+      - "semantic segmentation"
+      - "instance segmentation"
+      - "image segmentation"
+      - "feature extraction"
+      - "edge detection"
+      - "pattern recognition"
+      - "yolo"
+      - "faster rcnn"
+      - "mask rcnn"
+      - "ssd"
+      - "image recognition"
+      - "visual inspection"
+      - "defect detection"
+      - "crack detection"
+      - "surface defect"
+      - "3d reconstruction"
+      - "point cloud"
+      - "lidar"
+      - "photogrammetry"
+      - "stereo vision"
+      - "depth estimation"
+      - "optical flow"
+      - "video analysis"
+      - "action recognition"
+      - "pose estimation"
+      - "drone imagery"
+      - "uav imagery"
+      - "satellite imagery"
+      - "remote sensing"
+
+  Natural_Language_Processing:
+    examples:
+      - Text mining from construction documents
+      - Information extraction from specifications
+      - Chatbots for project management
+      - Knowledge graph construction
+    keywords:
+      - "natural language processing"
+      - "nlp"
+      - "text mining"
+      - "text classification"
+      - "named entity recognition"
+      - "ner"
+      - "information extraction"
+      - "sentiment analysis"
+      - "topic modeling"
+      - "word embedding"
+      - "word2vec"
+      - "document classification"
+      - "text summarization"
+      - "question answering"
+      - "chatbot"
+      - "knowledge graph"
+      - "ontology"
+      - "semantic parsing"
+      - "relation extraction"
+      - "language model"
+      - "large language model"
+      - "llm"
+      - "text analysis"
+      - "document parsing"
+      - "contract analysis"
+      - "specification parsing"
+
+  Reinforcement_Learning_Control:
+    examples:
+      - Traffic signal control optimization
+      - Autonomous vehicle navigation
+      - Structural control systems
+      - Construction robot control
+    keywords:
+      - "reinforcement learning"
+      - "q-learning"
+      - "deep q-network"
+      - "dqn"
+      - "policy gradient"
+      - "actor-critic"
+      - "a3c"
+      - "ppo"
+      - "proximal policy optimization"
+      - "multi-agent reinforcement"
+      - "markov decision process"
+      - "mdp"
+      - "reward function"
+      - "control policy"
+      - "adaptive control"
+      - "model predictive control"
+      - "mpc"
+      - "pid control"
+      - "feedback control"
+      - "optimal control"
+      - "autonomous control"
+      - "intelligent control"
+      - "self-learning"
+
+  Optimization_Metaheuristics:
+    examples:
+      - Genetic algorithm for structural design
+      - Particle swarm optimization for scheduling
+      - Ant colony optimization for routing
+      - Multi-objective optimization
+    keywords:
+      - "optimization"
+      - "metaheuristic"
+      - "genetic algorithm"
+      - "ga"
+      - "particle swarm optimization"
+      - "pso"
+      - "ant colony optimization"
+      - "aco"
+      - "simulated annealing"
+      - "differential evolution"
+      - "evolutionary algorithm"
+      - "multi-objective optimization"
+      - "nsga"
+      - "pareto"
+      - "harmony search"
+      - "firefly algorithm"
+      - "whale optimization"
+      - "grey wolf optimizer"
+      - "gwo"
+      - "cuckoo search"
+      - "bat algorithm"
+      - "artificial bee colony"
+      - "tabu search"
+      - "constraint optimization"
+      - "combinatorial optimization"
+      - "surrogate optimization"
+      - "topology optimization"
+      - "shape optimization"
+      - "design optimization"
+
+  Probabilistic_Bayesian_Methods:
+    examples:
+      - Bayesian updating for structural reliability
+      - Gaussian processes for prediction
+      - Uncertainty quantification
+      - Probabilistic risk assessment
+    keywords:
+      - "bayesian"
+      - "probabilistic"
+      - "gaussian process"
+      - "kriging"
+      - "uncertainty quantification"
+      - "monte carlo"
+      - "markov chain monte carlo"
+      - "mcmc"
+      - "bayesian network"
+      - "bayesian inference"
+      - "bayesian optimization"
+      - "prior distribution"
+      - "posterior distribution"
+      - "likelihood"
+      - "probabilistic prediction"
+      - "reliability analysis"
+      - "risk assessment"
+      - "stochastic"
+      - "sensitivity analysis"
+      - "confidence interval"
+      - "credible interval"
+      - "probabilistic neural network"
+      - "bayesian deep learning"
+      - "ensemble prediction"
+      - "prediction interval"
+
+  Digital_Twins_IoT_SHM:
+    examples:
+      - Digital twin for bridge monitoring
+      - IoT-based structural health monitoring
+      - Smart sensor networks
+      - Real-time infrastructure monitoring
+    keywords:
+      - "digital twin"
+      - "internet of things"
+      - "iot"
+      - "smart sensor"
+      - "sensor network"
+      - "wireless sensor"
+      - "embedded sensor"
+      - "real-time monitoring"
+      - "condition monitoring"
+      - "structural health monitoring"
+      - "shm"
+      - "vibration monitoring"
+      - "strain monitoring"
+      - "accelerometer"
+      - "data acquisition"
+      - "daq"
+      - "edge computing"
+      - "cloud computing"
+      - "fog computing"
+      - "smart infrastructure"
+      - "smart city"
+      - "smart building"
+      - "cyber-physical system"
+      - "cps"
+      - "5g"
+      - "low power wide area"
+      - "lpwan"
+      - "lorawan"
+      - "predictive maintenance"
+      - "asset management"
+      - "infrastructure monitoring"
+      - "data streaming"
+      - "time series"
